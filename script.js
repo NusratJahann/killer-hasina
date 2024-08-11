@@ -174,15 +174,13 @@ document.addEventListener("keydown", changeDirection);
 
 // Reference the audio element
 const backgroundMusic = document.getElementById("backgroundMusic");
-
-// Initialize the background music
-document.addEventListener('DOMContentLoaded', function() {
-    backgroundMusic.volume = .8;
-
+backgroundMusic.volume = .7;
+document.addEventListener('visibilitychange', function() {
     if (document.hidden) {
-        // Pause the audio when the tab is hidden
         backgroundMusic.pause();
     } else {
-        backgroundMusic.play();
+        backgroundMusic.play().catch(error => {
+            console.log("Audio play error:", error);
+        });
     }
 });
