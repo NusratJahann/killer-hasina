@@ -53,7 +53,7 @@ const changeFoodPosition = () => {
 
 const handleGameOver = () => {
   clearInterval(setIntervalId);
-  alert("You died! Press OK to kill them once more 🐸");
+  alert("Oi mama abar morish na pls!\nOK chap diya abar moyla porishkar kor 🐸");
   location.reload();
 };
 
@@ -153,15 +153,40 @@ const handleMove = (x, y) => {
 };
 
 // Add touch event listeners
-document.addEventListener("touchstart", (e) => handleStart(e.touches[0].clientX, e.touches[0].clientY));
+document.addEventListener("touchstart", (e) => {
+  startMusic();
+  handleStart(e.touches[0].clientX, e.touches[0].clientY);
+});
 document.addEventListener("touchmove", (e) => handleMove(e.touches[0].clientX, e.touches[0].clientY));
 
 // Add mouse event listeners
-document.addEventListener("mousedown", (e) => handleStart(e.clientX, e.clientY));
+document.addEventListener("mousedown", (e) => {
+  startMusic();
+  handleStart(e.clientX, e.clientY);
+});
 document.addEventListener("mousemove", (e) => {
   if (e.buttons === 1) { // Only track movement if the mouse button is pressed
     handleMove(e.clientX, e.clientY);
   }
+});
+
+// Flag to check if the music has started
+let musicStarted = false;
+
+// Function to start the music
+const startMusic = () => {
+    if (!musicStarted) {
+        backgroundMusic.play().catch(error => {
+            console.log("Audio play error:", error);
+        });
+        musicStarted = true;
+    }
+};
+
+// Add keyboard event listener
+document.addEventListener("keydown", (e) => {
+    startMusic();
+    changeDirection(e);
 });
 
 window.addEventListener("resize", updateGridSize);
@@ -169,8 +194,6 @@ window.addEventListener("resize", updateGridSize);
 updateGridSize();
 changeFoodPosition();
 setIntervalId = setInterval(initGame, 100);
-
-document.addEventListener("keydown", changeDirection);
 
 // Reference the audio element
 const backgroundMusic = document.getElementById("backgroundMusic");
