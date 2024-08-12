@@ -50,7 +50,13 @@
 h3{
   color: rgba(247, 250, 255, 0.648);
   font-weight: 400;
-  margin-top: 10px;
+  margin-top: 30px;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
   .play-board .food {
