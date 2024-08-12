@@ -189,15 +189,11 @@ document.addEventListener("keydown", (e) => {
     changeDirection(e);
 });
 
-window.addEventListener("resize", updateGridSize);
-
-updateGridSize();
-changeFoodPosition();
-setIntervalId = setInterval(initGame, 100);
-
 // Reference the audio element
 const backgroundMusic = document.getElementById("backgroundMusic");
 backgroundMusic.volume = .7;
+
+// Add event listener for page visibility change
 document.addEventListener('visibilitychange', function() {
     if (document.hidden) {
         backgroundMusic.pause();
@@ -207,3 +203,9 @@ document.addEventListener('visibilitychange', function() {
         });
     }
 });
+
+window.addEventListener("resize", updateGridSize);
+
+updateGridSize();
+changeFoodPosition();
+setIntervalId = setInterval(initGame, 100);
