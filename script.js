@@ -53,7 +53,7 @@ const changeFoodPosition = () => {
 
 const handleGameOver = () => {
   clearInterval(setIntervalId);
-  alert("Oi mama abar morish na pls!\nOK chap diya abar moyla porishkar kor 🐸");
+  alert("Oi mama abar morish na pls!\nOK chap diya moyla porishkar kor 🐸");
   location.reload();
 };
 
